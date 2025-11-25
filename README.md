@@ -6,12 +6,12 @@ React Native CLI ile geliştirilmiş, yapay zeka destekli bir günlük uygulamas
 
 Uygulamanın çalışır halini aşağıdaki videodan izleyebilirsiniz:
 
-[YouTube Video Linki Buraya Gelecek]
+https://www.youtube.com/watch?v=SPEohoSh7q8
 
 ### Ekran Görüntüleri
-[Ana Ekran Görüntüsü Buraya Gelecek]
-[Duygu Analizi Ekranı Buraya Gelecek]
-[Haftalık Özet Ekranı Buraya Gelecek]
+<img width="502" height="1011" alt="Ekran görüntüsü 2025-11-25 212228" src="https://github.com/user-attachments/assets/f4840758-1ab1-436f-b073-b378b24f1862" />
+
+<img width="482" height="1002" alt="Ekran görüntüsü 2025-11-25 212207" src="https://github.com/user-attachments/assets/42506402-4f3a-4bb7-935e-eff3081abe55" />
 
 ---
 
