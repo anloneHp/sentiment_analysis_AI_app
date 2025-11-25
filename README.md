@@ -17,7 +17,6 @@ https://www.youtube.com/watch?v=SPEohoSh7q8
 
 ## Proje Yapısı
 
-```text
 TestProjesi/
 ├── src/
 │   ├── components/        # UI bileşenleri (EntryCard, SentimentCard vb.)
@@ -30,7 +29,8 @@ TestProjesi/
 │   └── utils/             # Yardımcı fonksiyonlar (Date, Sentiment)
 ├── .env                   # Environment değişkenleri
 └── App.tsx                # Ana uygulama bileşeni
-Yapay Zeka Altyapısı
+
+# Yapay Zeka Altyapısı
 Bu proje iki temel yapay zeka modelini entegre eder:
 
 1. Duygu Analizi (Sentiment Analysis)
