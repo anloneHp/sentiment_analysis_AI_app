@@ -33,12 +33,12 @@ TestProjesi/
 # Yapay Zeka Altyapısı
 Bu proje iki temel yapay zeka modelini entegre eder:
 
-#1. Duygu Analizi (Sentiment Analysis)
+# Duygu Analizi (Sentiment Analysis)
 Türkçe metinler için özel olarak eğitilmiş BERT tabanlı bir model kullanır.
 
-Model: savasy/bert-base-turkish-sentiment-cased
+-Model: savasy/bert-base-turkish-sentiment-cased
 
-API Sağlayıcı: Hugging Face Inference API
+-API Sağlayıcı: Hugging Face Inference API
 
 Sınıflandırma:
 
@@ -59,7 +59,7 @@ Caching: Aynı metin için tekrar API çağrısı yapılmaz.
 #2. Akıllı Tavsiye Sistemi
 Kullanıcının yazdıklarını analiz eden ve geri bildirim veren asistan.
 
-Altyapı: Google Generative AI (Gemini 2.5 Flash)
+-Altyapı: Google Generative AI (Gemini 2.5 Flash)
 
 İşlev: İçeriği ve ruh halini analiz eder; motive edici ve farkındalık yaratıcı kısa notlar iletir.
 
