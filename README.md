@@ -1,97 +1,79 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# AI Günlük Asistanım
 
-# Getting Started
+React Native CLI ile geliştirilmiş, yapay zeka destekli bir günlük uygulaması. Kullanıcılar günlük düşüncelerini yazabilir, AI ile duygu analizi yapabilir ve haftalık istatistiklerini görüntüleyebilir
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Proje Yapısı
 
-## Step 1: Start Metro
-
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
-
-To start the Metro dev server, run the following command from the root of your React Native project:
-
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+TestProjesi/
+├── src/
+│   ├── components/             # UI bileşenleri
+│   │   ├── EntryCard.tsx      # Günlük kayıt kartı
+│   │   ├── SentimentCard.tsx  # Duygu analizi sonuç kartı
+│   │   └── LoadingOverlay.tsx # Yükleme ekranı
+│   ├── config/                 # Uygulama konfigürasyonu
+│   │   └── Config.ts          # API keys, model settings
+│   ├── constants/              # Sabitler
+│   │   ├── theme.ts           # Renk, spacing, typography sabitleri
+│   │   └── messages.ts        # Türkçe kullanıcı mesajları
+│   ├── context/                # React Context
+│   │   └── EntriesContext.tsx # Günlük kayıtları state yönetimi
+│   ├── screens/                # Ekranlar
+│   │   ├── HomeScreen.tsx     # Ana ekran 
+│   │   ├── HistoryScreen.tsx  # Geçmiş kayıtlar
+│   │   └── WeeklySummaryScreen.tsx # Haftalık istatistikler
+│   ├── services/               # Servis katmanı
+│   │   ├── AIService.ts       # AI API entegrasyonu
+│   │   └── StorageService.ts  # AsyncStorage yönetimi
+│   ├── types/                  # TypeScript tip tanımları
+│   │   ├── index.ts           # Ana tipler
+│   └── utils/                  # Yardımcı fonksiyonlar
+│       ├── sentimentUtils.ts  # Duygu renk/emoji/label fonksiyonları
+│       └── dateUtils.ts       # Tarih formatlama fonksiyonları
+├── .env                        # Environment değişkenleri 
+├── .env.example               # Environment şablonu
+└── App.tsx                    # Ana uygulama bileşeni
 ```
 
-## Step 2: Build and run your app
+### Kullanılan Model
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+**Model:** [savasy/bert-base-turkish-sentiment-cased](https://huggingface.co/savasy/bert-base-turkish-sentiment-cased)
 
-### Android
+## Bu model, Türkçe metinler için özel olarak eğitilmiş bir BERT tabanlı duygu analizi modelidir. Model, metinleri şu kategorilere ayırır:
+- **Pozitif**: Mutlu, umutlu, heyecanlı duygular
+- **Negatif**: Üzgün, kızgın, stresli duygular
+- **Nötr**: Dengeli, sakin duygular
 
-```sh
-# Using npm
-npm run android
 
-# OR using Yarn
-yarn android
-```
+## Uygulama, Hugging Face Inference API'sini kullanır:
+- **Endpoint**: `https://api-inference.huggingface.co/models/savasy/bert-base-turkish-sentiment-cased`
+- **Kimlik Doğrulama**: Bearer token (API key)
+- **Timeout**: 30 saniye
+- **Retry Logic**: 3 deneme 
+- **Caching**: Aynı metin için tekrar API çağrısı yapılmaz
 
-### iOS
+## Akıllı Tavsiye Sistemi
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+Uygulamamız, yazdıklarınızı anlayan akıllı bir asistana sahiptir. **Google Gemini 2.5 Flash** teknolojisi ile güçlendirilmiş bu asistan:
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+* Günlük yazılarınızın içeriğini ve ruh halinizi analiz eder.
+* Size özel, motive edici ve farkındalık yaratıcı kısa notlar iletir.
+* Eski modellere göre çok daha hızlı ve akıcı yanıtlar üretir.
 
-```sh
-bundle install
-```
+**Kullanılan Altyapı:** Google Generative AI (Gemini 2.5 Flash)
 
-Then, and every time you update your native dependencies, run:
+## Kullanılan AI Kod Asistanları:
+-Antigravity (Gemini 3 ve Claude 3.5)
 
-```sh
-bundle exec pod install
-```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## Kurulum ve Çalıştırma
+Gereksinimler: Node.js, JDK, Android Studio (Android için) veya Xcode (iOS için) kurulu olmalıdır.
+Bağımlılıkları Yükle:
+   ```bash
+   npm install
+   ```
+ Ortam Değişkenleri: `.env.example` dosyasını `.env` olarak kopyalayın ve gerekli API anahtarlarını ekleyin.
+ Uygulamayı Başlat:
+   - Android: `npm run android`
+   - iOS: `npm run ios`
 
-```sh
-# Using npm
-npm run ios
 
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
